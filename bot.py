@@ -1,5 +1,5 @@
 import telebot
-from bot_logic import plastic_craft
+from bot_logic import plastic_craft, decomposition
 
 bot = telebot.TeleBot("Your token")
 
@@ -12,5 +12,8 @@ def send_start(message):
 def send_plastic_crafts(message):
     bot.reply_to(message, f'Конечно! Вот ваша поделка: {plastic_craft()}')
 
-bot.polling()
+@bot.message_handler(commands=['decomposition'])
+def send_decomposition(message):
+    bot.reply_to(message, f'Конечно! Вот ваша информация: {decomposition()}')
 
+bot.polling()
